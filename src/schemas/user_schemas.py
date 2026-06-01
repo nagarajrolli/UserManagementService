@@ -1,3 +1,4 @@
+# src/schemas/user_schemas.py
 from pydantic import BaseModel, EmailStr, Field
 
 class UserBase(BaseModel):
@@ -11,5 +12,4 @@ class UserResponse(UserBase):
     id: int
     is_active: bool
 
-    # Enforces database object parsing compatibility directly
     model_config = {"from_attributes": True}
