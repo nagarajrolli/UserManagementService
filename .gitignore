@@ -1,0 +1,16 @@
+# Local environment secret variables
+.env
+.env.local
+.env.*
+
+# EXCEPTION: Force Git to track the public template example file
+!.env.example
+
+# JetBrains / PyCharm IDE configurations
+.idea/
+
+# Local Python virtual environments
+venv/
+.venv/
+__pycache__/
+*.pyc
