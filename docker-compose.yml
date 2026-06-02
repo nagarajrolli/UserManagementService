@@ -1,20 +1,17 @@
-version: "3.8"
-
 services:
   postgres_db:
     image: postgres:16-alpine
     container_name: production_postgres_db
     environment:
-      POSTGRES_USER: postgres_user
-      POSTGRES_PASSWORD: secure_prod_password
-      POSTGRES_DB: userManagementServiceDB  # Updated database target name
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: userManagementServiceDB
     ports:
       - "5432:5432"
     volumes:
       - postgres_runtime_data:/var/lib/postgresql/data
     healthcheck:
-      # Updated the health check command to target your specific database
-      test: ["CMD-SHELL", "pg_isready -U postgres_user -d userManagementServiceDB"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d userManagementServiceDB"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -31,3 +28,8 @@ services:
     depends_on:
       postgres_db:
         condition: service_healthy
+
+# This declaration block must sit at the absolute far-left edge of your file!
+volumes:
+  postgres_runtime_data:
+    driver: local
